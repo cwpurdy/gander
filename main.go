@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "gander/cmd"
+import "github.com/cwpurdy/gander/cmd"
 
 func main() {
 	cmd.Execute()
