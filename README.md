@@ -6,4 +6,4 @@
 ┃╰┻━┃╭━╮┃┃╱┃┃┣╯╰╯┃╰━━┫┃┃╰╮
 ╰━━━┻╯╱╰┻╯╱╰━┻━━━┻━━━┻╯╰━╯
 </pre>
-#### Read CSVs from the command line, lightning fast
+#### :zap: Read CSVs from the command line, lightning fast :zap:
