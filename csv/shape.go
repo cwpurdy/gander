@@ -14,7 +14,8 @@ func GetShape(filePath string) {
 	f, err := os.Open(filePath)
 	defer f.Close()
 	if err != nil {
-		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
+		os.Stderr.WriteString("Could not load CSV" + filePath + "\n")
+		return
 	}
 
 	// Create context.

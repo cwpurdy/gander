@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"github.com/cwpurdy/gander/csv"
 
 	"github.com/spf13/cobra"
@@ -32,9 +31,17 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
+	PreRunE: func(cmd *cobra.Command, args []string) error {
+		if len(args) == 0 {
+			cmd.Help()
+		}
+		return nil
+	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(len(args))
-		csv.GetShape("../nasdaq-listed.csv")
+		if len(args) == 0 {
+			return
+		}
+		csv.GetShape(args[0])
 	},
 }
 
