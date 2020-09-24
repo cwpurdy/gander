@@ -1,2 +1,8 @@
 ![Gander](/gander-logo.png?raw=true "Optional Title")
-## :zap: Read CSVs from the command line, lightning fast :zap:
+## :zap: Fast CSV command line processing :zap:
+
+# Contents
+* commands
+* installation
+* examples
+* license
