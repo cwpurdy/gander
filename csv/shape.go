@@ -11,7 +11,6 @@ import (
 )
 
 func GetShape(filePath string) {
-
 	f, err := os.Open(filePath)
 	defer f.Close()
 	if err != nil {
@@ -21,81 +20,100 @@ func GetShape(filePath string) {
 
 	// Create context.
 	ctx, cancel := context.WithCancel(context.Background())
-
 	defer cancel()
 
-
 	reader := csv.NewReader(f)
-	cols := 0
-	rows := 0
+	reader.ReuseRecord = true
 
-	src := make(chan int)
-	out := make(chan int)
+	record, err := reader.Read()
+
+	if err != nil {
+		fmt.Println("CSV is empty")
+		return
+	}
+	cols := len(record)
+	rows := 1
 
 	// use a waitgroup to manage synchronization
 	var wg sync.WaitGroup
+	out := make(chan int)
+	m := &sync.Mutex{}
 
+	start := time.Now()
 	// declare the workers
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 5; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			shapeWorker(ctx, out, src, &rows)
+			shapeWorker(ctx, out, m,  reader)
 		}()
 	}
-	start := time.Now()
-	headers, err := reader.Read()
-	if err != nil {
-		fmt.Println(err)
-	}
-	cols = len(headers)
-	// read the csv and write it to src
+
+	// drain the output and add to rows count
 	go func() {
-		for {
-			_, err := reader.Read()
-			if err == io.EOF {
-				break
-			} else if err != nil {
-				fmt.Println(err)
-			}
-			// you might select on ctx.Done().
-			src <- 1
+		for res := range out {
+			rows += res
 		}
-		// close src to signal workers that no more job are incoming.
-		close(src)
 	}()
 
 	// wait for worker group to finish and close out
-	go func() {
-		// wait for writers to quit.
-		wg.Wait()
-		// when you close(out) it breaks the below loop.
-		close(out)
-	}()
+	wg.Wait()
+	// when you close(out) it breaks the below loop.
+	close(out)
 
-	// drain the output and add to rows count
-	for res := range out {
-		rows += res
-	}
 
 	fmt.Println(rows, ",", cols) // Done, return
-
 	fmt.Println(time.Since(start).Seconds())
 }
 
-func shapeWorker(ctx context.Context, dst chan int, src chan int, rows *int) {
+func shapeWorker(ctx context.Context, dst chan int, m *sync.Mutex, reader *csv.Reader) {
 
 	for {
-		select {
-		// check for readable state of the channel.
-		case _, ok := <-src:
-			if !ok {
-				return
-			}
-			dst <- 1
-		// if the context is cancelled, quit.
-		case <-ctx.Done():
+		m.Lock()
+		_, err := reader.Read()
+		m.Unlock()
+		if err == io.EOF {
+			return
+		} else if err != nil {
+			fmt.Println(err)
 			return
 		}
+		// you might select on ctx.Done().
+		dst <- 1
 	}
+}
+
+func PracticeShape(filePath string) {
+
+	f, err := os.Open(filePath)
+	defer f.Close()
+	if err != nil {
+		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
+	}
+
+	parser := csv.NewReader(f)
+
+	rows := 0
+	cols := 0
+
+	start := time.Now()
+	for {
+		record, err := parser.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		if cols == 0 {
+			cols = len(record)
+		}
+		rows += 1
+
+	}
+
+	fmt.Println(rows, cols)
+	fmt.Println(time.Since(start).Seconds())
 }

@@ -26,7 +26,7 @@ func GetHeaders(filePath string) {
 	}
 
 	parser := csv.NewReader(f)
-
+	parser.ReuseRecord = true
 	headers, err := parser.Read()
 	if err == io.EOF {
 		return
