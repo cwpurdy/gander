@@ -21,8 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="154e191b-32cb-4436-991a-135bac6e47b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/headers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/headers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv/read.go" beforeDir="false" afterPath="$PROJECT_DIR$/csv/read.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,8 +82,15 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2390" y="193" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600829973717">
+      <screen x="1680" y="-144" width="1920" height="1057" />
+    </state>
+    <state x="2390" y="193" key="#com.intellij.fileTypes.FileTypeChooser/1680.-144.1920.1057/0.23.1680.1027@1680.-144.1920.1057" timestamp="1600829973717" />
   </component>
 </project>
