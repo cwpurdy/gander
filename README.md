@@ -6,4 +6,4 @@
 ┃╰┻━┃╭━╮┃┃╱┃┃┣╯╰╯┃╰━━┫┃┃╰╮
 ╰━━━┻╯╱╰┻╯╱╰━┻━━━┻━━━┻╯╰━╯
 </pre>
-Fast way to peek at the contents of CSV files straight from the command line
+#### Read CSVs from the command line, lightning fast
