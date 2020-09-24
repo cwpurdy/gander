@@ -1,44 +1,34 @@
 package csv
 
 import (
+	"encoding/csv"
+	"fmt"
 	"io"
 	"os"
-	"fmt"
-	"encoding/csv"
+
+	"github.com/olekukonko/tablewriter"
 )
 
-func PeekRecords() {
-	f, err := os.Open("../nasdaq-listed.csv")
-	defer f.Close()
+func PeekRecords(filePath string) {
+
+	table, err := tablewriter.NewCSV(os.Stdout, filePath, true)
 	if err != nil {
-		fmt.Println(err)
+		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
 	}
-
-	parser := csv.NewReader(f)
-
-	for {
-		record, err := parser.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		fmt.Println(record)
-	}
+	table.SetAlignment(tablewriter.ALIGN_LEFT)   // Set Alignment
+	table.Render()
 }
 
 func GetHeaders(filePath string) {
 	f, err := os.Open(filePath)
 	defer f.Close()
 	if err != nil {
-		fmt.Println(err)
+		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
 	}
 
 	parser := csv.NewReader(f)
 
-	record, err := parser.Read()
+	headers, err := parser.Read()
 	if err == io.EOF {
 		return
 	}
@@ -46,5 +36,7 @@ func GetHeaders(filePath string) {
 		fmt.Println(err)
 	}
 
-	fmt.Println("HEADERS", record)
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetHeader(headers)
+	table.Render()
 }
