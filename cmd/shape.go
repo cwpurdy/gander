@@ -17,13 +17,14 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/cwpurdy/gander/csv"
 
 	"github.com/spf13/cobra"
 )
 
-// dimCmd represents the dim command
-var dimCmd = &cobra.Command{
-	Use:   "dim",
+// shapeCmd represents the shape command
+var shapeCmd = &cobra.Command{
+	Use:   "shape",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -32,20 +33,21 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("dim called")
+		csv.GetShape("../nasdaq-listed.csv")
+		fmt.Println("shape called")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(dimCmd)
+	rootCmd.AddCommand(shapeCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// dimCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// shapeCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// dimCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// shapeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
