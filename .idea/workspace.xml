@@ -20,11 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154e191b-32cb-4436-991a-135bac6e47b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/csv/peek.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/headers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/headers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/peek.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/peek.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/shape.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/shape.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv/peek.go" beforeDir="false" afterPath="$PROJECT_DIR$/csv/peek.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv/shape.go" beforeDir="false" afterPath="$PROJECT_DIR$/csv/shape.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

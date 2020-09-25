@@ -40,7 +40,7 @@ func GetShape(filePath string, headless bool) {
 
 	// use a wait group to manage synchronization
 	var wg sync.WaitGroup
-	out := make(chan int)
+	out := make(chan int, 100)
 	m := &sync.Mutex{}
 
 	start := time.Now()
@@ -62,7 +62,7 @@ func GetShape(filePath string, headless bool) {
 
 	// wait for worker group to finish and close out
 	wg.Wait()
-	// when you close(out) it breaks the below loop.
+	// when you close(out) it breaks the goroutine loop above ^^
 	close(out)
 
 	fmt.Println(rows, ",", cols) // Done, return
@@ -86,37 +86,37 @@ func shapeWorker(ctx context.Context, dst chan int, m *sync.Mutex, reader *csv.R
 	}
 }
 
-func PracticeShape(filePath string) {
-
-	f, err := os.Open(filePath)
-	defer f.Close()
-	if err != nil {
-		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
-	}
-
-	parser := csv.NewReader(f)
-
-	rows := 0
-	cols := 0
-
-	start := time.Now()
-	for {
-		record, err := parser.Read()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		if cols == 0 {
-			cols = len(record)
-		}
-		rows += 1
-
-	}
-
-	fmt.Println(rows, cols)
-	fmt.Println(time.Since(start).Seconds())
-}
+//func PracticeShape(filePath string) {
+//
+//	f, err := os.Open(filePath)
+//	defer f.Close()
+//	if err != nil {
+//		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
+//	}
+//
+//	parser := csv.NewReader(f)
+//
+//	rows := 0
+//	cols := 0
+//
+//	start := time.Now()
+//	for {
+//		record, err := parser.Read()
+//		if err == io.EOF {
+//			break
+//		}
+//		if err != nil {
+//			fmt.Println(err)
+//			return
+//		}
+//
+//		if cols == 0 {
+//			cols = len(record)
+//		}
+//		rows += 1
+//
+//	}
+//
+//	fmt.Println(rows, cols)
+//	fmt.Println(time.Since(start).Seconds())
+//}

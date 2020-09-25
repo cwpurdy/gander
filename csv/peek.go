@@ -23,12 +23,14 @@ func PeekNItems(filePath string, n int, headless bool,) {
 	head, err := reader.Read()
 
 	if err != nil {
-		fmt.Println("CSV is empty")
+		fmt.Println("Can't read from CSV at", filePath)
 		return
 	}
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader(head)
-	if headless {
+	if !headless {
+		table.SetHeader(head)
+	} else {
+		table.Append(head)
 		n -= 1
 	}
 
