@@ -10,7 +10,8 @@ import (
 	"time"
 )
 
-func GetShape(filePath string) {
+func GetShape(filePath string, headless bool) {
+
 	f, err := os.Open(filePath)
 	defer f.Close()
 	if err != nil {
@@ -32,7 +33,10 @@ func GetShape(filePath string) {
 		return
 	}
 	cols := len(record)
-	rows := 1
+	rows := 0
+	if headless {
+		rows += 1
+	}
 
 	// use a waitgroup to manage synchronization
 	var wg sync.WaitGroup

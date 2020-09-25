@@ -41,7 +41,7 @@ to quickly create a Cobra application.`,
 		if len(args) == 0 {
 			return
 		}
-		csv.GetShape(args[0])
+		csv.GetShape(args[0], headless)
 	},
 }
 
