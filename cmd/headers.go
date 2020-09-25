@@ -18,8 +18,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
 	"github.com/cwpurdy/gander/csv"
+	"github.com/spf13/cobra"
 )
 
 // headersCmd represents the headers command
@@ -34,7 +34,11 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("headers called")
-		csv.GetHeaders("../nasdaq-listed.csv")
+		if len(args) == 0 {
+			cmd.Help()
+			return
+		}
+		csv.GetHeaders(args[0])
 	},
 }
 

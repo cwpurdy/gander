@@ -31,16 +31,11 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	PreRunE: func(cmd *cobra.Command, args []string) error {
-		if len(args) == 0 {
-			cmd.Help()
-		}
-		return nil
-	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			return
 		}
+		cmd.Help()
 		csv.GetShape(args[0], headless)
 	},
 }

@@ -38,7 +38,7 @@ func GetShape(filePath string, headless bool) {
 		rows += 1
 	}
 
-	// use a waitgroup to manage synchronization
+	// use a wait group to manage synchronization
 	var wg sync.WaitGroup
 	out := make(chan int)
 	m := &sync.Mutex{}
@@ -64,7 +64,6 @@ func GetShape(filePath string, headless bool) {
 	wg.Wait()
 	// when you close(out) it breaks the below loop.
 	close(out)
-
 
 	fmt.Println(rows, ",", cols) // Done, return
 	fmt.Println(time.Since(start).Seconds())

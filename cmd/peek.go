@@ -17,9 +17,10 @@ package cmd
 
 import (
 	"github.com/cwpurdy/gander/csv"
-
 	"github.com/spf13/cobra"
 )
+
+var n int
 
 // peekCmd represents the peek command
 var peekCmd = &cobra.Command{
@@ -32,12 +33,18 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		csv.PracticeShape(args[0])
+		if len(args) == 0 {
+			cmd.Help()
+			return
+		}
+
+		csv.PeekNItems(args[0], n, headless)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(peekCmd)
+
 
 	// Here you will define your flags and configuration settings.
 
@@ -47,5 +54,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// peekCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	peekCmd.Flags().IntVar(&n, "N", 10, "peek the first N entries in the CSV")
 }
