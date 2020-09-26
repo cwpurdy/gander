@@ -6,3 +6,7 @@
 * installation
 * examples
 * license
+
+# Commands
+### peek
+peek the first N rows of the CSV
