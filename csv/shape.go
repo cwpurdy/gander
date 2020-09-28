@@ -3,8 +3,6 @@ package csv
 import (
 	"context"
 	"encoding/csv"
-	"fmt"
-	"io"
 	"os"
 	"sync"
 )
@@ -76,10 +74,7 @@ func shapeWorker(ctx context.Context, dst chan int, m *sync.Mutex, reader *csv.R
 		m.Lock()
 		_, err := reader.Read()
 		m.Unlock()
-		if err == io.EOF {
-			return
-		} else if err != nil {
-			fmt.Println(err)
+		if err != nil {
 			return
 		}
 		// you might select on ctx.Done().

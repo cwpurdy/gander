@@ -38,7 +38,7 @@ to quickly create a Cobra application.`,
 		if err != nil {
 			fmt.Println("ERR", err)
 		} else {
-			fmt.Printf("ROWS: '%d' COLS '%d'\n", shape.Rows, shape.Cols)
+			fmt.Printf("ROWS:%-8d COLS:%-8d\n", shape.Rows, shape.Cols)
 		}
 	},
 }
