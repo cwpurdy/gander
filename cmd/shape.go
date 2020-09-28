@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
 	"github.com/cwpurdy/gander/csv"
 
 	"github.com/spf13/cobra"
@@ -32,7 +33,13 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		csv.GetShape(args[0], headless)
+		shape, err := csv.GetShape(args[0], headless)
+
+		if err != nil {
+			fmt.Println("ERR", err)
+		} else {
+			fmt.Printf("ROWS: '%d' COLS '%d'\n", shape.Rows, shape.Cols)
+		}
 	},
 }
 

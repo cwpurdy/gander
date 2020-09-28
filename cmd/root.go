@@ -59,7 +59,7 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gander.yaml)")
-	rootCmd.PersistentFlags().BoolVar(&headless, "headless", false, "provided table is headless")
+	rootCmd.PersistentFlags().BoolVar(&headless, "hdls", false, "specify that the provided table is headless")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.

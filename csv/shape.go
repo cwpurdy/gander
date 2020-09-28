@@ -7,16 +7,19 @@ import (
 	"io"
 	"os"
 	"sync"
-	"time"
 )
 
-func GetShape(filePath string, headless bool) {
+type Shape struct {
+	Rows int
+	Cols int
+}
+
+func GetShape(filePath string, headless bool) (*Shape, error) {
 
 	f, err := os.Open(filePath)
 	defer f.Close()
 	if err != nil {
-		os.Stderr.WriteString("Could not load CSV" + filePath + "\n")
-		return
+		return nil, err
 	}
 
 	// Create context.
@@ -29,8 +32,7 @@ func GetShape(filePath string, headless bool) {
 	record, err := reader.Read()
 
 	if err != nil {
-		fmt.Println("CSV is empty")
-		return
+		return nil, err
 	}
 	cols := len(record)
 	rows := 0
@@ -43,7 +45,6 @@ func GetShape(filePath string, headless bool) {
 	out := make(chan int, 100)
 	m := &sync.Mutex{}
 
-	start := time.Now()
 	// declare the workers
 	for i := 0; i < 5; i++ {
 		wg.Add(1)
@@ -65,8 +66,8 @@ func GetShape(filePath string, headless bool) {
 	// when you close(out) it breaks the goroutine loop above ^^
 	close(out)
 
-	fmt.Println(rows, ",", cols) // Done, return
-	fmt.Println(time.Since(start).Seconds())
+	shape := &Shape{rows, cols}
+	return shape, nil
 }
 
 func shapeWorker(ctx context.Context, dst chan int, m *sync.Mutex, reader *csv.Reader) {
@@ -85,38 +86,3 @@ func shapeWorker(ctx context.Context, dst chan int, m *sync.Mutex, reader *csv.R
 		dst <- 1
 	}
 }
-
-//func PracticeShape(filePath string) {
-//
-//	f, err := os.Open(filePath)
-//	defer f.Close()
-//	if err != nil {
-//		os.Stderr.WriteString("Could not load CSV at " + filePath + "\n")
-//	}
-//
-//	parser := csv.NewReader(f)
-//
-//	rows := 0
-//	cols := 0
-//
-//	start := time.Now()
-//	for {
-//		record, err := parser.Read()
-//		if err == io.EOF {
-//			break
-//		}
-//		if err != nil {
-//			fmt.Println(err)
-//			return
-//		}
-//
-//		if cols == 0 {
-//			cols = len(record)
-//		}
-//		rows += 1
-//
-//	}
-//
-//	fmt.Println(rows, cols)
-//	fmt.Println(time.Since(start).Seconds())
-//}
