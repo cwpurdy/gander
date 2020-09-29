@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func PeekNItems(filePath string, n int, headless bool,) {
+func PeekNItems(filePath string, n int, headless bool) {
 
 	f, err := os.Open(filePath)
 	defer f.Close()
