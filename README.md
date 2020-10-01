@@ -1,4 +1,4 @@
-![Gander](/gander-logo.png?raw=true "Optional Title")
+#GANDER
 ## :zap: Fast CSV command line processing :zap:
 
 # Contents
