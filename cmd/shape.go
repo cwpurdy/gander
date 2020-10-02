@@ -18,7 +18,9 @@ package cmd
 import (
 	"fmt"
 	"github.com/cwpurdy/gander/csv"
+	"strconv"
 
+	"github.com/muesli/termenv"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +40,16 @@ to quickly create a Cobra application.`,
 		if err != nil {
 			fmt.Println("ERR", err)
 		} else {
-			fmt.Printf("ROWS:%-8d COLS:%-8d\n", shape.Rows, shape.Cols)
+
+			p := termenv.ColorProfile()
+
+			rows := termenv.String(strconv.Itoa(shape.Rows)).Background(p.Color("#000000")).Foreground(p.Color("#FFFFFF"))
+			cols := termenv.String(strconv.Itoa(shape.Cols)).Background(p.Color("#000000")).Foreground(p.Color("#FFFFFF"))
+
+			Rtitle := termenv.String(" ROWS: ").Background(p.Color("#FF00FF")).Foreground(p.Color("#000000")).Bold()
+			Ctitle := termenv.String(" COLS: ").Background(p.Color("#FF00FF")).Foreground(p.Color("#000000")).Bold()
+
+			fmt.Println(Rtitle, rows," | ", Ctitle, cols)
 		}
 	},
 }

@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="154e191b-32cb-4436-991a-135bac6e47b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv/csv_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/csv/csv_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv/peek.go" beforeDir="false" afterPath="$PROJECT_DIR$/csv/peek.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/shape.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/shape.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,9 +95,13 @@
       <screen x="1680" y="-144" width="1920" height="1057" />
     </state>
     <state x="2390" y="193" key="#com.intellij.fileTypes.FileTypeChooser/1680.-144.1920.1057/0.23.1680.1027@1680.-144.1920.1057" timestamp="1600829973717" />
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1601318378764">
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601596945341">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1601318378764" />
+    <state x="638" y="457" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.1027@0.23.1680.1027" timestamp="1601596945341" />
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup" timestamp="1601571655654">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1601571655654" />
   </component>
 </project>
