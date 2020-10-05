@@ -1,5 +1,5 @@
 # GANDER
-:zap: Fast CSV command line processing :zap:
+:zap: Fast command line CSV processing :zap:
 
 ## Contents
 * commands
